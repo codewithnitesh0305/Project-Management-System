@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" th:replace="~{base :: layout(~{::title}, ~{:: section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title> Index Page</title>
+</head>
+
+<body>
+	<section>
+		<table class="table">
+			<th:block th:if="${session.message}">
+							<p class="text-center text-success fs-2">[[${session.message}]]</p>
+							<th:block th:text="${@projectServiceImp.removeSessionMessage()}"></th:block>
+						</th:block>
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Project Name</th>
+					<th scope="col">Manager Name</th>
+					<th scope="col">Description</th>
+					<th scope="col">Start Date</th>
+					<th scope="col">End Date</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+				<tr th:each="e,c:${projectDetails}">
+					<th scope="row">[[${c.count}]]</th>
+					<td>[[${e.name}]]</td>
+					<td>[[${e.manager}]]</td>
+					<td>[[${e.description}]]</td>
+					<td>[[${e.startDate}]]</td>
+					<td>[[${e.endDate}]]</td>
+					<td>
+						<a th:href="@{'edit/' + ${e.id}}" class="btn btn-sm btn-primary">Edit</a>
+						<a th:href="@{'deleteProject/' + ${e.id}}" class="btn btn-sm btn-danger">Delete</a>
+					</td>
+				</tr>
+				
+			</tbody>
+		</table>
+	</section>
+</body>
+
+</html>
