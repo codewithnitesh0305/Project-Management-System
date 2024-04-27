@@ -33,7 +33,7 @@ public class HomeController {
 		model.addAttribute("projectDetails",list);
 		return "index";
 	}
-	
+	//Retrieve Project Details to Update Page
 	@GetMapping("/edit/{id}")
 	public String edit_employee(@PathVariable int id, Model model) {
 		//System.out.println(id);
@@ -79,6 +79,7 @@ public class HomeController {
 		return "redirect:/";
 	}
 	
+	//Delete project Details
 	@GetMapping("/deleteProject/{id}")
 	public String deleteProject(@PathVariable int id , HttpSession session) {
 		boolean f = projectServiceImp.deleteProject(id);
